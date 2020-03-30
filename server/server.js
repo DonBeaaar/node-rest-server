@@ -11,7 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/usuario', (req, res) => {
-    res.json('get usuario');
+    res.json({
+        id: '1',
+        nombre: 'Felipe Donoso'
+    });
 });
 app.post('/usuario', (req, res) => {
     let body = req.body;
