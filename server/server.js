@@ -1,45 +1,25 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser')
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.get('/usuario', (req, res) => {
-    res.json({
-        id: '1',
-        nombre: 'Felipe Donoso'
+app.use(require('./routes/usuario'))
+
+mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+    (error, res) => {
+        if (error) throw (error);
+
+        else console.log('Base de datos online');
+
     });
-});
-app.post('/usuario', (req, res) => {
-    let body = req.body;
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            description: 'El nombre es requerido'
-        })
-    } else {
-        res.json({
-            body
-        });
-    }
-
-});
-app.put('/usuario/:id', (req, res) => {
-    let id = req.params.id;
-    res.json({
-        id
-    });
-});
-app.delete('/usuario', (req, res) => {
-    res.json('delete usuario');
-});
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando ${process.env.PORT} port`);
 
