@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'dev') {
 
 
 } else {
-    urlDB = 'mongodb+srv://felipe:HCesSfozupYjLecm@cluster0-jpbc6.mongodb.net/cafe?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
+    urlDB = process.env.MONGO_URI;
 }
 
 
