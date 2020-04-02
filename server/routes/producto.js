@@ -151,7 +151,7 @@ app.put('/productos/:id', validaToken, (req, res) => {
     let id = req.params.id;
     let body = req.body;
 
-    Producto.findByIdAndUpdate(id, body, (err, productoDB) => {
+    Producto.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, productoDB) => {
 
             if (err) {
                 return res.status(400).json({
@@ -186,7 +186,7 @@ app.delete('/productos/:id', validaToken, (req, res) => {
         disponible: false
     }
 
-    Producto.findByIdAndUpdate(id, cambiaEstado, (err, productoDB) => {
+    Producto.findByIdAndUpdate(id, cambiaEstado, { new: true, runValidators: true }, (err, productoDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
