@@ -23,7 +23,7 @@ process.env.SEED = process.env.SEED || 'seed-desarollo';
 // Caducidad token
 // ==========================================
 
-process.env.CADUCIDAD_JWT = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD_JWT = '48h';
 
 
 
